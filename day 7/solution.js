@@ -1,10 +1,6 @@
 const rules = require('./input').input.split('\n');
 
 function solvePart1(rules) {
-    // Make set containing "good" colors
-    // Make set containing "bad" colors
-    // Make set of colors to be checked
-
     let goodColors = new Set(['shiny gold']);
     let badColors = new Set();
 
@@ -32,11 +28,12 @@ function solvePart1(rules) {
             // Else: there are some unclear colors in this rule, keep it in to be checked
         })
     }
-    return goodColors.size -1;
+    return goodColors.size - 1; // 'remove "shiny gold" from the good colors to get the right number'
 }
 
 function convertToObject(rule) {
-    // Convert the rule (a string) to { color: 'bright white', contains: ['shiny gold', 'dull lavender'] } 
+    // Convert the rule (a string) to:
+    // { color: 'bright white', colors: ['shiny gold', 'dull lavender'] } 
     const color = rule.split(' bags ')[0];
     const restString = rule.split(' contain ')[1]
     if (restString === 'no other bags.') {
