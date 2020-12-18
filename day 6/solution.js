@@ -8,14 +8,6 @@ function solvePart1(groups) {
     return totalSum;
 }
 
-function solvePart2(groups) {
-    let totalSum = 0;
-    for (var i = 0; i < groups.length; i++) {
-        totalSum += calcCommonChars(groups[i]);
-    }
-    return totalSum;
-}
-
 function calcUniqueChars(group) {
     uniqueChars = new Set();
     for (var i = 0; i < group.length; i++) {
@@ -26,6 +18,14 @@ function calcUniqueChars(group) {
         uniqueChars.add(currentChar);
     }
     return uniqueChars;
+}
+
+function solvePart2(groups) {
+    let totalSum = 0;
+    for (var i = 0; i < groups.length; i++) {
+        totalSum += calcCommonChars(groups[i]);
+    }
+    return totalSum;
 }
 
 function calcCommonChars(group) {
