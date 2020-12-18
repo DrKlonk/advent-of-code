@@ -31,6 +31,50 @@ function solvePart1(rules) {
     return goodColors.size - 1; // 'remove "shiny gold" from the good colors to get the right number'
 }
 
+function solvePart2(rules) {
+    let rulesArray = rules.map(rule => convertToObjectPart2(rule))
+    // Recursively check how many bags are in the shiny gold bag.
+    return getBagsInBag(rulesArray, 'shiny gold') - 1; // -1 for the shiny gold bag itself
+
+}
+
+function getBagsInBag(rulesArray, colorName) {
+    // Check the bags in the subcolors
+    const currentColor = rulesArray.find(rule => rule.color == colorName);
+    if (currentColor.colors.length === 0) {
+        return 1;
+    }
+    let bagsInThisBag = 1; // 1 for this bag
+    for (var i = 0; i < currentColor.colors.length; i++) {
+        const subColorObject = currentColor.colors[i];
+        bagsInThisBag += subColorObject.amount * getBagsInBag(rulesArray, subColorObject.subColor);
+    }
+    return bagsInThisBag;
+}
+
+function convertToObjectPart2(rule) {
+    // Make the string into an object: 
+    // { color: 'shiny gold', colors: [{amount: 1, color: dark olive}, {etc..}] }
+    ruleSplitOnBags = rule.split(' bags ');
+    const color = ruleSplitOnBags[0];
+    const restString = rule.split('contain ')[1];
+    
+    if (restString === 'no other bags.') {
+        // no bags in this bag.
+        return { color, colors: []}
+    }
+    return {
+        color,
+        colors: 
+            restString.split(', ').map(bagString => {
+            const bagStringSplit = bagString.split(' ');
+            const subColor = bagStringSplit[1] + ' ' + bagStringSplit[2];
+            const amount = bagStringSplit[0];
+            return { amount, subColor };
+        })
+    }
+}
+
 function convertToObject(rule) {
     // Convert the rule (a string) to:
     // { color: 'bright white', colors: ['shiny gold', 'dull lavender'] } 
@@ -47,4 +91,5 @@ function convertToObject(rule) {
     return { color, colors };
 }
 
-console.log(solvePart1(rules));
+// console.log(solvePart1(rules));
+console.log('answer: ', solvePart2(rules));
