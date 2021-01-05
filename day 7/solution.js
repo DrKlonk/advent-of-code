@@ -91,5 +91,5 @@ function convertToObject(rule) {
     return { color, colors };
 }
 
-// console.log(solvePart1(rules));
-console.log('answer: ', solvePart2(rules));
+console.log(solvePart1(rules));
+console.log(solvePart2(rules));

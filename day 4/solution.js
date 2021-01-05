@@ -66,6 +66,6 @@ function isKeyValuePairValid(key, value) {
     return key === 'cid'; // cid is always OK
 }
 
-// console.log(solvePart1(passports));
+console.log(solvePart1(passports));
 console.log(solvePart2(passports));
 
