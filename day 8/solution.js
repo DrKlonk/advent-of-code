@@ -48,8 +48,6 @@ function solvePart2(operations) {
             indices.add(index);
             index = calcNewIndex(operations, index);
             if (index == operations.length) {   
-                // the program terminated             
-                console.log(i)
                 // return acc
                 return acc;
             }
@@ -75,5 +73,5 @@ function calcNewIndex(operations, index) {
     return index + 1;
 }
 
-// console.log(solvePart1(operations));
+console.log(solvePart1(operations));
 console.log(solvePart2(operations));
