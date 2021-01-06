@@ -1,4 +1,4 @@
-input = `acc +28
+const input = `acc +28
 jmp +481
 nop +87
 acc -10
@@ -651,6 +651,6 @@ nop -432
 acc +1
 acc +33
 acc +1
-jmp +1`;
+jmp +1`
 
-module.exports = { input };
+module.exports = { input }
