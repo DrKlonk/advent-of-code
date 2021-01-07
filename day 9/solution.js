@@ -9,7 +9,7 @@ function solvePart1 (numbers) {
         // init the sets for the first ones
         for (let j = 0; j < preamble; j++) {
             for (let k = j+1; k < preamble; k++) {
-                sumsets[j].add(numbers[j] + +numbers[k])
+                sumsets[j].add(numbers[j] + numbers[k])
             }
         }
     
@@ -20,6 +20,7 @@ function solvePart1 (numbers) {
             for (let x = i-preamble+1; x<i+1; x++) {
                 sumsets[x].add(numbers[i] + numbers[x])
             }
+         
             continue
         }
         // if it does not exist, return numbers[i]
@@ -27,4 +28,27 @@ function solvePart1 (numbers) {
     }
 }
 
+function solvePart2 (numbers, number) {
+    // Find the contigious set in numbers that sum up to number.
+    numbers = numbers.map(n=>+n)
+    for (let i = 0; i < numbers.length; i++) {
+        let sum = numbers[i];
+        let endIdx = i + 1;
+        while (sum < number) {
+            sum += numbers[endIdx]
+            if (sum === number) {
+               return answer(i, endIdx, numbers)
+            }
+            endIdx++
+        }
+    }
+}
+
+function answer (start, end, numbers) {
+    // if === return sum of min and max from range
+    const range = numbers.slice(start, end)
+    return Math.max(...range) + Math.min(...range)
+}
+
 console.log(solvePart1(input))
+console.log(solvePart2(input, 29221323))
