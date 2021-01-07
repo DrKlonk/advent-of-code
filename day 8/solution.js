@@ -55,7 +55,7 @@ function calcNewIndex (operations, index) {
   const operator = value[0]
   const number = parseInt(value.substring(1))
   if (instruction === 'jmp') {
-    return operator === '+' ? index += number : index -= number
+    return operator === '+' ? index + number : index - number
   }
   if (instruction === 'acc') {
     operator === '+' ? acc += number : acc -= number
