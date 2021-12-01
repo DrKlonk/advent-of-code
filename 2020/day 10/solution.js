@@ -1,8 +1,8 @@
 let jolts = require('./input').input.split('\n').map(n => +n)
+jolts.push(0)
+jolts = jolts.sort((a, b) => a - b)
 
 function solvePart1() {
-    jolts.push(0)
-    jolts = jolts.sort((a, b) => a - b)
     let oneStep = 0, threeSteps = 1
     
     if (jolts[0] === 1) {
@@ -24,26 +24,11 @@ function solvePart1() {
 }
 
 let DP = {}
-function solvePart2() {    
-    // dp(i) = number of ways to get to the end.
-    // dp(end) = 1
-    // if there are multiple ways to get to dp(i), add their dp(j) to dp(i).
-    // if you are done with that, save dp(i) to an array
-    jolts.push(0)
-    jolts = jolts.sort((a, b) => a - b)
+function solvePart2() {
     return dp(0)
-    // return jolts
-    // .reduce(
-    //   (acc, value) => {
-    //     acc[value] =
-    //       (acc[value - 3] || 0) + (acc[value - 2] || 0) + (acc[value - 1] || 0);
-    //     return acc;
-    //   },
-    //   [1]
-    // )
-    // .pop();
 }
 
+// Dynamic programming!
 function dp(idx) {
     if (idx == jolts.length - 1) {
         return 1 // one way to get to the end

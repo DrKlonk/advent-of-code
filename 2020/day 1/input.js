@@ -200,4 +200,4 @@ const input = `1891
 2002
 `
 
-module.exports = { input };
+module.exports = { input }
