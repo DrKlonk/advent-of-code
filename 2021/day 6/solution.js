@@ -2,7 +2,7 @@ const inputFile = require("./input.js")
 
 const parsedInput = inputFile.input.split(",")
 
-let scoreArr = new Array(81).fill(0).map(() => {
+let scoreArr = new Array(257).fill(0).map(() => {
   return { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null }
 })
 
@@ -21,6 +21,6 @@ function fishScore(fishValue, daysLeft) {
 
 console.log(
   parsedInput
-    .map((val) => fishScore(val, 80))
+    .map((val) => fishScore(val, 256))
     .reduce((sum, score) => sum + score, 0)
 )
